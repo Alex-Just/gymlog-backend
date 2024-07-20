@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=gymlog
+POSTGRES_USER=nfmvqmKopSQsTEXNjLQbRXkjOgSZkQJy
+POSTGRES_PASSWORD=mrm16CTrysWco0Yb8xnR89SQe1ykBs3JtGUYtokd5lS6MzqxnYum0UNTP13s65tS
