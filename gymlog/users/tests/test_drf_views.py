@@ -17,7 +17,7 @@ class TestUserViewSet:
 
         view.request = request
 
-        assert user in view.get_queryset()
+        assert view.get_queryset().filter(id=user.id).exists()
 
     def test_me(self, user: User, api_rf: APIRequestFactory):
         view = UserViewSet()
