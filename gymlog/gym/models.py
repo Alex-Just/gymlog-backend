@@ -12,6 +12,7 @@ from django.db.models import TextField
 from django.utils.translation import gettext_lazy as _
 from model_utils.models import TimeFramedModel
 from model_utils.models import TimeStampedModel
+from multiselectfield import MultiSelectField
 
 from gymlog.mixins import UUIDModel
 
@@ -29,14 +30,26 @@ class Exercise(TimeStampedModel, UUIDModel):
         OTHER = "other", _("Other")
 
     class MuscleGroups(TextChoices):
+        ABDOMINALS = "abdominals", _("Abdominals")
+        ABDUCTORS = "abductors", _("Abductors")
+        ADDUCTORS = "adductors", _("Adductors")
         BICEPS = "biceps", _("Biceps")
-        TRICEPS = "triceps", _("Triceps")
-        CHEST = "chest", _("Chest")
-        BACK = "back", _("Back")
-        LEGS = "legs", _("Legs")
-        SHOULDERS = "shoulders", _("Shoulders")
-        CORE = "core", _("Core")
+        LOWER_BACK = "lower_back", _("Lower Back")
+        UPPER_BACK = "upper_back", _("Upper Back")
         CARDIO = "cardio", _("Cardio")
+        CHEST = "chest", _("Chest")
+        CALVES = "calves", _("Calves")
+        FOREARMS = "forearms", _("Forearms")
+        GLUTES = "glutes", _("Glutes")
+        HAMSTRINGS = "hamstrings", _("Hamstrings")
+        LATS = "lats", _("Lats")
+        QUADRICEPS = "quadriceps", _("Quadriceps")
+        SHOULDERS = "shoulders", _("Shoulders")
+        TRICEPS = "triceps", _("Triceps")
+        TRAPS = "traps", _("Traps")
+        NECK = "neck", _("Neck")
+        FULL_BODY = "full_body", _("Full Body")
+        OTHER = "other", _("Other")
 
     class ExerciseTypes(TextChoices):
         WEIGHT_REPS = "weight_reps", _("Weight Reps")
@@ -47,6 +60,12 @@ class Exercise(TimeStampedModel, UUIDModel):
         WEIGHT_DURATION = "weight_duration", _("Weight & Duration")
         DISTANCE_DURATION = "distance_duration", _("Distance Duration")
         WEIGHT_DISTANCE = "weight_distance", _("Weight & Distance")
+        BODYWEIGHT_REPS = "bodyweight_reps", _("Bodyweight Reps")
+        BODYWEIGHT_ASSISTED_REPS = (
+            "bodyweight_assisted_reps",
+            _("Bodyweight Assisted Reps"),
+        )
+        SHORT_DISTANCE_WEIGHT = "short_distance_weight", _("Short Distance Weight")
 
     name = CharField(_("Name"), max_length=255)
     exercise_type = CharField(
@@ -65,7 +84,7 @@ class Exercise(TimeStampedModel, UUIDModel):
         max_length=255,
         choices=MuscleGroups.choices,
     )
-    other_muscles = CharField(
+    other_muscles = MultiSelectField(
         _("Other Muscles"),
         max_length=255,
         blank=True,

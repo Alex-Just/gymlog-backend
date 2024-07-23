@@ -13,7 +13,13 @@ from .models import Workout
 
 @admin.register(Exercise)
 class ExerciseAdmin(GeneralModelAdmin):
-    list_display = ("name", "exercise_type", "equipment", "primary_muscle_group")
+    list_display = (
+        "name",
+        "exercise_type",
+        "equipment",
+        "primary_muscle_group",
+        "other_muscles",
+    )
     search_fields = ("name", "exercise_type", "equipment", "primary_muscle_group")
     list_filter = ("exercise_type", "equipment", "primary_muscle_group")
     ordering = ("name",)

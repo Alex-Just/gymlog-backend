@@ -1,5 +1,3 @@
-# locale/es_ES/LC_MESSAGES/django.po
-
 # Translations for the gymlog project
 #
 #, fuzzy
@@ -7,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-23 13:44+0000\n"
+"POT-Creation-Date: 2024-07-23 15:26+0000\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,29 +48,62 @@ msgstr "Suspensión"
 msgid "Other"
 msgstr "Otro"
 
+msgid "Abdominals"
+msgstr "Abdominales"
+
+msgid "Abductors"
+msgstr "Abductores"
+
+msgid "Adductors"
+msgstr "Aductores"
+
 msgid "Biceps"
 msgstr "Bíceps"
 
-msgid "Triceps"
-msgstr "Tríceps"
+msgid "Lower Back"
+msgstr "Parte baja de la espalda"
+
+msgid "Upper Back"
+msgstr "Parte alta de la espalda"
+
+msgid "Cardio"
+msgstr "Cardio"
 
 msgid "Chest"
 msgstr "Pecho"
 
-msgid "Back"
-msgstr "Espalda"
+msgid "Calves"
+msgstr "Pantorrillas"
 
-msgid "Legs"
-msgstr "Piernas"
+msgid "Forearms"
+msgstr "Antebrazos"
+
+msgid "Glutes"
+msgstr "Glúteos"
+
+msgid "Hamstrings"
+msgstr "Isquiotibiales"
+
+msgid "Lats"
+msgstr "Dorsales"
+
+msgid "Quadriceps"
+msgstr "Cuádriceps"
 
 msgid "Shoulders"
 msgstr "Hombros"
 
-msgid "Core"
-msgstr "Abdomen"
+msgid "Triceps"
+msgstr "Tríceps"
 
-msgid "Cardio"
-msgstr "Cardio"
+msgid "Traps"
+msgstr "Trapecios"
+
+msgid "Neck"
+msgstr "Cuello"
+
+msgid "Full Body"
+msgstr "Todo el cuerpo"
 
 msgid "Weight Reps"
 msgstr "Repeticiones con peso"
@@ -97,6 +128,15 @@ msgstr "Distancia y duración"
 
 msgid "Weight & Distance"
 msgstr "Peso y distancia"
+
+msgid "Bodyweight Reps"
+msgstr "Repeticiones con peso corporal"
+
+msgid "Bodyweight Assisted Reps"
+msgstr "Repeticiones asistidas con peso corporal"
+
+msgid "Short Distance Weight"
+msgstr "Peso de corta distancia"
 
 msgid "Name"
 msgstr "Nombre"
@@ -218,8 +258,6 @@ msgstr "Biografía"
 msgid "Profile Picture"
 msgstr "Foto de perfil"
 
-#, fuzzy
-#| msgid "My Profile"
 msgid "Private Profile"
 msgstr "Perfil Privado"
 
