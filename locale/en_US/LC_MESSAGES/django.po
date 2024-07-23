@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 12:58+0000\n"
+"POT-Creation-Date: 2024-07-23 13:44+0000\n"
 "Language: en-US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,6 +18,162 @@ msgid "Russian"
 msgstr ""
 
 msgid "Spanish"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Barbell"
+msgstr ""
+
+msgid "Dumbbell"
+msgstr ""
+
+msgid "Kettlebell"
+msgstr ""
+
+msgid "Machine"
+msgstr ""
+
+msgid "Plate"
+msgstr ""
+
+msgid "Resistance Band"
+msgstr ""
+
+msgid "Suspension"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Biceps"
+msgstr ""
+
+msgid "Triceps"
+msgstr ""
+
+msgid "Chest"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Legs"
+msgstr ""
+
+msgid "Shoulders"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid "Cardio"
+msgstr ""
+
+msgid "Weight Reps"
+msgstr ""
+
+msgid "Reps Only"
+msgstr ""
+
+msgid "Weighted Bodyweight"
+msgstr ""
+
+msgid "Assisted Bodyweight"
+msgstr ""
+
+msgid "Duration"
+msgstr ""
+
+msgid "Weight & Duration"
+msgstr ""
+
+msgid "Distance Duration"
+msgstr ""
+
+msgid "Weight & Distance"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Exercise Type"
+msgstr ""
+
+msgid "Equipment"
+msgstr ""
+
+msgid "Primary muscle group"
+msgstr ""
+
+msgid "Other Muscles"
+msgstr ""
+
+msgid "Small Image"
+msgstr ""
+
+msgid "Large Image"
+msgstr ""
+
+msgid "Exercise"
+msgstr ""
+
+msgid "Exercises"
+msgstr ""
+
+msgid "Routine"
+msgstr ""
+
+msgid "Routines"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Rest Timer"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Routine Exercise"
+msgstr ""
+
+msgid "Routine Exercises"
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+msgid "Reps"
+msgstr ""
+
+msgid "Routine Set"
+msgstr ""
+
+msgid "Routine Sets"
+msgstr ""
+
+msgid "Volume"
+msgstr ""
+
+msgid "Workout"
+msgstr ""
+
+msgid "Workouts"
+msgstr ""
+
+msgid "Exercise Log"
+msgstr ""
+
+msgid "Exercise Logs"
+msgstr ""
+
+msgid "Set Log"
+msgstr ""
+
+msgid "Set Logs"
 msgstr ""
 
 msgid "Sign In"
@@ -48,6 +204,18 @@ msgid "This username has already been taken."
 msgstr ""
 
 msgid "Name of User"
+msgstr ""
+
+msgid "Preferred language"
+msgstr ""
+
+msgid "Bio"
+msgstr ""
+
+msgid "Profile Picture"
+msgstr ""
+
+msgid "Private Profile"
 msgstr ""
 
 msgid "Information successfully updated"

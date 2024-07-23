@@ -1,3 +1,5 @@
+# locale/es_ES/LC_MESSAGES/django.po
+
 # Translations for the gymlog project
 #
 #, fuzzy
@@ -5,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 12:58+0000\n"
+"POT-Creation-Date: 2024-07-23 13:44+0000\n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,13 +15,169 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 msgid "Russian"
-msgstr ""
+msgstr "Ruso"
 
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
+
+msgid "None"
+msgstr "Ninguno"
+
+msgid "Barbell"
+msgstr "Barra"
+
+msgid "Dumbbell"
+msgstr "Mancuerna"
+
+msgid "Kettlebell"
+msgstr "Pesa rusa"
+
+msgid "Machine"
+msgstr "Máquina"
+
+msgid "Plate"
+msgstr "Disco"
+
+msgid "Resistance Band"
+msgstr "Banda de resistencia"
+
+msgid "Suspension"
+msgstr "Suspensión"
+
+msgid "Other"
+msgstr "Otro"
+
+msgid "Biceps"
+msgstr "Bíceps"
+
+msgid "Triceps"
+msgstr "Tríceps"
+
+msgid "Chest"
+msgstr "Pecho"
+
+msgid "Back"
+msgstr "Espalda"
+
+msgid "Legs"
+msgstr "Piernas"
+
+msgid "Shoulders"
+msgstr "Hombros"
+
+msgid "Core"
+msgstr "Abdomen"
+
+msgid "Cardio"
+msgstr "Cardio"
+
+msgid "Weight Reps"
+msgstr "Repeticiones con peso"
+
+msgid "Reps Only"
+msgstr "Solo repeticiones"
+
+msgid "Weighted Bodyweight"
+msgstr "Peso corporal con peso"
+
+msgid "Assisted Bodyweight"
+msgstr "Peso corporal asistido"
+
+msgid "Duration"
+msgstr "Duración"
+
+msgid "Weight & Duration"
+msgstr "Peso y duración"
+
+msgid "Distance Duration"
+msgstr "Distancia y duración"
+
+msgid "Weight & Distance"
+msgstr "Peso y distancia"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Exercise Type"
+msgstr "Tipo de ejercicio"
+
+msgid "Equipment"
+msgstr "Equipo"
+
+msgid "Primary muscle group"
+msgstr "Grupo muscular principal"
+
+msgid "Other Muscles"
+msgstr "Otros músculos"
+
+msgid "Small Image"
+msgstr "Imagen pequeña"
+
+msgid "Large Image"
+msgstr "Imagen grande"
+
+msgid "Exercise"
+msgstr "Ejercicio"
+
+msgid "Exercises"
+msgstr "Ejercicios"
+
+msgid "Routine"
+msgstr "Rutina"
+
+msgid "Routines"
+msgstr "Rutinas"
+
+msgid "Order"
+msgstr "Orden"
+
+msgid "Rest Timer"
+msgstr "Temporizador de descanso"
+
+msgid "Note"
+msgstr "Nota"
+
+msgid "Routine Exercise"
+msgstr "Ejercicio de rutina"
+
+msgid "Routine Exercises"
+msgstr "Ejercicios de rutina"
+
+msgid "Weight"
+msgstr "Peso"
+
+msgid "Reps"
+msgstr "Repeticiones"
+
+msgid "Routine Set"
+msgstr "Conjunto de rutina"
+
+msgid "Routine Sets"
+msgstr "Conjuntos de rutina"
+
+msgid "Volume"
+msgstr "Volumen"
+
+msgid "Workout"
+msgstr "Entrenamiento"
+
+msgid "Workouts"
+msgstr "Entrenamientos"
+
+msgid "Exercise Log"
+msgstr "Registro de ejercicios"
+
+msgid "Exercise Logs"
+msgstr "Registros de ejercicios"
+
+msgid "Set Log"
+msgstr "Registro de series"
+
+msgid "Set Logs"
+msgstr "Registros de series"
 
 msgid "Sign In"
 msgstr "Iniciar sesión"
@@ -51,222 +209,19 @@ msgstr "Este nombre de usuario ya está en uso."
 msgid "Name of User"
 msgstr "Nombre del usuario"
 
+msgid "Preferred language"
+msgstr "Idioma preferido"
+
+msgid "Bio"
+msgstr "Biografía"
+
+msgid "Profile Picture"
+msgstr "Foto de perfil"
+
+#, fuzzy
+#| msgid "My Profile"
+msgid "Private Profile"
+msgstr "Perfil Privado"
+
 msgid "Information successfully updated"
 msgstr "Información actualizada con éxito"
-
-#~ msgid "Account Inactive"
-#~ msgstr "Cuenta Inactiva"
-
-#~ msgid "This account is inactive."
-#~ msgstr "Esta cuenta está inactiva."
-
-#~ msgid "Account"
-#~ msgstr "Cuenta"
-
-#~ msgid "E-mail Addresses"
-#~ msgstr "Direcciones de correo electrónico"
-
-#~ msgid "The following e-mail addresses are associated with your account:"
-#~ msgstr ""
-#~ "Las siguientes direcciones de correo electrónico están asociadas a su "
-#~ "cuenta:"
-
-#~ msgid "Verified"
-#~ msgstr "Verificado"
-
-#~ msgid "Unverified"
-#~ msgstr "No verificado"
-
-#~ msgid "Primary"
-#~ msgstr "Principal"
-
-#~ msgid "Make Primary"
-#~ msgstr "Hacer Principal"
-
-#~ msgid "Re-send Verification"
-#~ msgstr "Reenviar verificación"
-
-#~ msgid "Remove"
-#~ msgstr "Eliminar"
-
-#~ msgid "Warning:"
-#~ msgstr "Advertencia:"
-
-#~ msgid ""
-#~ "You currently do not have any e-mail address set up. You should really "
-#~ "add an e-mail address so you can receive notifications, reset your "
-#~ "password, etc."
-#~ msgstr ""
-#~ "Actualmente no tiene configurada ninguna dirección de correo electrónico. "
-#~ "Debería añadir una dirección de correo electrónico para recibir "
-#~ "notificaciones, restablecer su contraseña, etc."
-
-#~ msgid "Add E-mail Address"
-#~ msgstr "Añadir dirección de correo electrónico"
-
-#~ msgid "Add E-mail"
-#~ msgstr "Añadir correo electrónico"
-
-#~ msgid "Do you really want to remove the selected e-mail address?"
-#~ msgstr ""
-#~ "¿Realmente quiere eliminar la dirección de correo electrónico "
-#~ "seleccionada?"
-
-#~ msgid "Confirm E-mail Address"
-#~ msgstr "Confirmar dirección de correo electrónico"
-
-#, python-format
-#~ msgid ""
-#~ "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-"
-#~ "mail address for user %(user_display)s."
-#~ msgstr ""
-#~ "Por favor, confirme que <a href=\"mailto:%(email)s\">%(email)s</a> es una "
-#~ "dirección de correo electrónico del usuario %(user_display)s."
-
-#~ msgid "Confirm"
-#~ msgstr "Confirmar"
-
-#, python-format
-#~ msgid ""
-#~ "This e-mail confirmation link expired or is invalid. Please <a "
-#~ "href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
-#~ msgstr ""
-#~ "Este enlace de confirmación de correo electrónico ha caducado o no es "
-#~ "válido. Por favor<a href=\"%(email_url)s\">emita una nueva solicitud de "
-#~ "confirmación de correo electrónico</a>."
-
-#~ msgid "Please sign in with one of your existing third party accounts:"
-#~ msgstr ""
-#~ "Por favor, inicie sesión con una de sus cuentas de terceros existentes:"
-
-#, python-format
-#~ msgid ""
-#~ "Or, <a href=\"%(signup_url)s\">sign up</a> for a %(site_name)s account "
-#~ "and sign in below:"
-#~ msgstr ""
-#~ "O, <a href=\"%(signup_url)s\">registrese</a> para una cuenta de "
-#~ "%(site_name)s y inicie sesión a continuación:"
-
-#~ msgid "or"
-#~ msgstr "o"
-
-#, python-format
-#~ msgid ""
-#~ "If you have not created an account yet, then please <a "
-#~ "href=\"%(signup_url)s\">sign up</a> first."
-#~ msgstr ""
-#~ "Si aún no ha creado una cuenta, por favor <a "
-#~ "href=\"%(signup_url)s\">registrese</a> primero."
-
-#~ msgid "Forgot Password?"
-#~ msgstr "¿Olvidó su contraseña?"
-
-#~ msgid "Are you sure you want to sign out?"
-#~ msgstr "¿Está seguro de que desea cerrar sesión?"
-
-#~ msgid "Change Password"
-#~ msgstr "Cambiar contraseña"
-
-#~ msgid "Password Reset"
-#~ msgstr "Restablecimiento de contraseña"
-
-#~ msgid ""
-#~ "Forgotten your password? Enter your e-mail address below, and we'll send "
-#~ "you an e-mail allowing you to reset it."
-#~ msgstr ""
-#~ "¿Olvidó su contraseña? Introduzca su dirección de correo electrónico a "
-#~ "continuación y le enviaremos un correo electrónico que le permitirá "
-#~ "restablecerla."
-
-#~ msgid "Reset My Password"
-#~ msgstr "Restablecer mi contraseña"
-
-#~ msgid "Please contact us if you have any trouble resetting your password."
-#~ msgstr ""
-#~ "Póngase en contacto con nosotros si tiene algún problema para restablecer "
-#~ "su contraseña."
-
-#~ msgid ""
-#~ "We have sent you an e-mail. Please contact us if you do not receive it "
-#~ "within a few minutes."
-#~ msgstr ""
-#~ "Le hemos enviado un correo electrónico. Póngase en contacto con nosotros "
-#~ "si no lo recibe en unos minutos."
-
-#~ msgid "Bad Token"
-#~ msgstr "Token inválido"
-
-#, python-format
-#~ msgid ""
-#~ "The password reset link was invalid, possibly because it has already been "
-#~ "used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
-#~ "reset</a>."
-#~ msgstr ""
-#~ "El enlace de restablecimiento de contraseña no es válido, posiblemente "
-#~ "porque ya ha sido utilizado. Por favor, solicite un <a "
-#~ "href=\"%(passwd_reset_url)s\"> nuevo restablecimiento de contraseña</a>."
-
-#~ msgid "change password"
-#~ msgstr "cambiar contraseña"
-
-#~ msgid "Your password is now changed."
-#~ msgstr "Su contraseña ha sido cambiada."
-
-#~ msgid "Set Password"
-#~ msgstr "Definir contraseña"
-
-#~ msgid "Signup"
-#~ msgstr "Registrarse"
-
-#, python-format
-#~ msgid ""
-#~ "Already have an account? Then please <a href=\"%(login_url)s\">sign in</"
-#~ "a>."
-#~ msgstr ""
-#~ "¿Ya tiene una cuenta? Entonces, por favor, <a "
-#~ "href=\"%(login_url)s\">inicie sesión</a>."
-
-#~ msgid "Sign Up Closed"
-#~ msgstr "Registro cerrado"
-
-#~ msgid "We are sorry, but the sign up is currently closed."
-#~ msgstr "Lo sentimos, pero el registro está actualmente cerrado."
-
-#~ msgid "Verify Your E-mail Address"
-#~ msgstr "Verifique su dirección de correo electrónico"
-
-#~ msgid ""
-#~ "We have sent an e-mail to you for verification. Follow the link provided "
-#~ "to finalize the signup process. Please contact us if you do not receive "
-#~ "it within a few minutes."
-#~ msgstr ""
-#~ "Le hemos enviado un correo electrónico para verificación. Siga el enlace "
-#~ "proporcionado para finalizar el proceso de registro. Póngase en contacto "
-#~ "con nosotros si no lo recibe en unos minutos."
-
-#~ msgid ""
-#~ "This part of the site requires us to verify that\n"
-#~ "you are who you claim to be. For this purpose, we require that you\n"
-#~ "verify ownership of your e-mail address. "
-#~ msgstr ""
-#~ "Esta parte del sitio requiere que verifiquemos que\n"
-#~ "es quien dice ser. Para este propósito, requerimos que\n"
-#~ "verifique la propiedad de su dirección de correo electrónico."
-
-#~ msgid ""
-#~ "We have sent an e-mail to you for\n"
-#~ "verification. Please click on the link inside this e-mail. Please\n"
-#~ "contact us if you do not receive it within a few minutes."
-#~ msgstr ""
-#~ "Le hemos enviado un correo electrónico para\n"
-#~ "verificación. Por favor, haga clic en el enlace dentro de este correo "
-#~ "electrónico. Por favor\n"
-#~ "contáctenos si no lo recibe en unos minutos."
-
-#, python-format
-#~ msgid ""
-#~ "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change "
-#~ "your e-mail address</a>."
-#~ msgstr ""
-#~ "<strong>Nota:</strong> todavía puede <a href=\"%(email_url)s\">cambiar su "
-#~ "dirección de correo electrónico</a>."

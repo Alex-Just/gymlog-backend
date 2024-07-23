@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 12:58+0000\n"
+"POT-Creation-Date: 2024-07-23 13:44+0000\n"
 "Language: ru-RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,13 +13,169 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 msgid "Spanish"
-msgstr ""
+msgstr "Испанский"
+
+msgid "None"
+msgstr "Нет"
+
+msgid "Barbell"
+msgstr "Штанга"
+
+msgid "Dumbbell"
+msgstr "Гантель"
+
+msgid "Kettlebell"
+msgstr "Гиря"
+
+msgid "Machine"
+msgstr "Тренажер"
+
+msgid "Plate"
+msgstr "Диск"
+
+msgid "Resistance Band"
+msgstr "Резиновая лента"
+
+msgid "Suspension"
+msgstr "Подвесной тренажер"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Biceps"
+msgstr "Бицепс"
+
+msgid "Triceps"
+msgstr "Трицепс"
+
+msgid "Chest"
+msgstr "Грудь"
+
+msgid "Back"
+msgstr "Спина"
+
+msgid "Legs"
+msgstr "Ноги"
+
+msgid "Shoulders"
+msgstr "Плечи"
+
+msgid "Core"
+msgstr "Пресс"
+
+msgid "Cardio"
+msgstr "Кардио"
+
+msgid "Weight Reps"
+msgstr "Повторения с весом"
+
+msgid "Reps Only"
+msgstr "Только повторения"
+
+msgid "Weighted Bodyweight"
+msgstr "Утяжеленное собственное тело"
+
+msgid "Assisted Bodyweight"
+msgstr "Поддерживаемое собственное тело"
+
+msgid "Duration"
+msgstr "Продолжительность"
+
+msgid "Weight & Duration"
+msgstr "Вес и продолжительность"
+
+msgid "Distance Duration"
+msgstr "Дистанция и продолжительность"
+
+msgid "Weight & Distance"
+msgstr "Вес и дистанция"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Exercise Type"
+msgstr "Тип упражнения"
+
+msgid "Equipment"
+msgstr "Оборудование"
+
+msgid "Primary muscle group"
+msgstr "Основная группа мышц"
+
+msgid "Other Muscles"
+msgstr "Другие мышцы"
+
+msgid "Small Image"
+msgstr "Маленькое изображение"
+
+msgid "Large Image"
+msgstr "Большое изображение"
+
+msgid "Exercise"
+msgstr "Упражнение"
+
+msgid "Exercises"
+msgstr "Упражнения"
+
+msgid "Routine"
+msgstr "Тренировка"
+
+msgid "Routines"
+msgstr "Тренировки"
+
+msgid "Order"
+msgstr "Порядок"
+
+msgid "Rest Timer"
+msgstr "Таймер отдыха"
+
+msgid "Note"
+msgstr "Заметка"
+
+msgid "Routine Exercise"
+msgstr "Упражнение в тренировке"
+
+msgid "Routine Exercises"
+msgstr "Упражнения в тренировке"
+
+msgid "Weight"
+msgstr "Вес"
+
+msgid "Reps"
+msgstr "Повторения"
+
+msgid "Routine Set"
+msgstr "Набор упражнений"
+
+msgid "Routine Sets"
+msgstr "Наборы упражнений"
+
+msgid "Volume"
+msgstr "Объем"
+
+msgid "Workout"
+msgstr "Тренировка"
+
+msgid "Workouts"
+msgstr "Тренировки"
+
+msgid "Exercise Log"
+msgstr "Журнал упражнений"
+
+msgid "Exercise Logs"
+msgstr "Журналы упражнений"
+
+msgid "Set Log"
+msgstr "Журнал подходов"
+
+msgid "Set Logs"
+msgstr "Журналы подходов"
 
 msgid "Sign In"
 msgstr "Войти"
@@ -51,216 +207,17 @@ msgstr "Это имя пользователя уже занято."
 msgid "Name of User"
 msgstr "Имя пользователя"
 
+msgid "Preferred language"
+msgstr "Предпочитаемый язык"
+
+msgid "Bio"
+msgstr "Биография"
+
+msgid "Profile Picture"
+msgstr "Фото профиля"
+
+msgid "Private Profile"
+msgstr "Личный профиль"
+
 msgid "Information successfully updated"
 msgstr "Информация успешно обновлена"
-
-#~ msgid "Account Inactive"
-#~ msgstr "Аккаунт неактивен"
-
-#~ msgid "This account is inactive."
-#~ msgstr "Этот аккаунт неактивен."
-
-#~ msgid "Account"
-#~ msgstr "Аккаунт"
-
-#~ msgid "E-mail Addresses"
-#~ msgstr "Адреса электронной почты"
-
-#~ msgid "The following e-mail addresses are associated with your account:"
-#~ msgstr "Следующие адреса электронной почты связаны с вашим аккаунтом:"
-
-#~ msgid "Verified"
-#~ msgstr "Подтверждено"
-
-#~ msgid "Unverified"
-#~ msgstr "Неподтверждено"
-
-#~ msgid "Primary"
-#~ msgstr "Основной"
-
-#~ msgid "Make Primary"
-#~ msgstr "Сделать основным"
-
-#~ msgid "Re-send Verification"
-#~ msgstr "Отправить подтверждение снова"
-
-#~ msgid "Remove"
-#~ msgstr "Удалить"
-
-#~ msgid "Warning:"
-#~ msgstr "Предупреждение:"
-
-#~ msgid ""
-#~ "You currently do not have any e-mail address set up. You should really "
-#~ "add an e-mail address so you can receive notifications, reset your "
-#~ "password, etc."
-#~ msgstr ""
-#~ "В настоящее время у вас не настроен адрес электронной почты. Вам следует "
-#~ "добавить адрес электронной почты, чтобы получать уведомления, сбрасывать "
-#~ "пароль и т.д."
-
-#~ msgid "Add E-mail Address"
-#~ msgstr "Добавить адрес электронной почты"
-
-#~ msgid "Add E-mail"
-#~ msgstr "Добавить e-mail"
-
-#~ msgid "Do you really want to remove the selected e-mail address?"
-#~ msgstr "Вы действительно хотите удалить выбранный адрес электронной почты?"
-
-#~ msgid "Confirm E-mail Address"
-#~ msgstr "Подтвердить адрес электронной почты"
-
-#, python-format
-#~ msgid ""
-#~ "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-"
-#~ "mail address for user %(user_display)s."
-#~ msgstr ""
-#~ "Пожалуйста, подтвердите, что <a href=\"mailto:%(email)s\">%(email)s</a> "
-#~ "является адресом электронной почты пользователя %(user_display)s."
-
-#~ msgid "Confirm"
-#~ msgstr "Подтвердить"
-
-#, python-format
-#~ msgid ""
-#~ "This e-mail confirmation link expired or is invalid. Please <a "
-#~ "href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
-#~ msgstr ""
-#~ "Срок действия этой ссылки подтверждения электронной почты истек или она "
-#~ "недействительна. Пожалуйста,<a href=\"%(email_url)s\">запросите новое "
-#~ "подтверждение электронной почты</a>."
-
-#~ msgid "Please sign in with one of your existing third party accounts:"
-#~ msgstr ""
-#~ "Пожалуйста, войдите, используя один из ваших существующих сторонних "
-#~ "аккаунтов:"
-
-#, python-format
-#~ msgid ""
-#~ "Or, <a href=\"%(signup_url)s\">sign up</a> for a %(site_name)s account "
-#~ "and sign in below:"
-#~ msgstr ""
-#~ "Или, <a href=\"%(signup_url)s\">зарегистрируйтесь</a> для аккаунта "
-#~ "%(site_name)s и войдите ниже:"
-
-#~ msgid "or"
-#~ msgstr "или"
-
-#, python-format
-#~ msgid ""
-#~ "If you have not created an account yet, then please <a "
-#~ "href=\"%(signup_url)s\">sign up</a> first."
-#~ msgstr ""
-#~ "Если вы еще не создали аккаунт, пожалуйста, сначала <a "
-#~ "href=\"%(signup_url)s\">зарегистрируйтесь</a>."
-
-#~ msgid "Forgot Password?"
-#~ msgstr "Забыли пароль?"
-
-#~ msgid "Are you sure you want to sign out?"
-#~ msgstr "Вы уверены, что хотите выйти?"
-
-#~ msgid "Change Password"
-#~ msgstr "Изменить пароль"
-
-#~ msgid "Password Reset"
-#~ msgstr "Сброс пароля"
-
-#~ msgid ""
-#~ "Forgotten your password? Enter your e-mail address below, and we'll send "
-#~ "you an e-mail allowing you to reset it."
-#~ msgstr ""
-#~ "Забыли пароль? Введите свой адрес электронной почты ниже, и мы отправим "
-#~ "вам письмо с инструкциями по сбросу пароля."
-
-#~ msgid "Reset My Password"
-#~ msgstr "Сбросить мой пароль"
-
-#~ msgid "Please contact us if you have any trouble resetting your password."
-#~ msgstr ""
-#~ "Пожалуйста, свяжитесь с нами, если у вас возникли проблемы с сбросом "
-#~ "пароля."
-
-#~ msgid ""
-#~ "We have sent you an e-mail. Please contact us if you do not receive it "
-#~ "within a few minutes."
-#~ msgstr ""
-#~ "Мы отправили вам письмо. Пожалуйста, свяжитесь с нами, если вы не "
-#~ "получите его в течение нескольких минут."
-
-#~ msgid "Bad Token"
-#~ msgstr "Неверный токен"
-
-#, python-format
-#~ msgid ""
-#~ "The password reset link was invalid, possibly because it has already been "
-#~ "used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
-#~ "reset</a>."
-#~ msgstr ""
-#~ "Ссылка для сброса пароля недействительна, возможно, потому что она уже "
-#~ "была использована. Пожалуйста, запросите <a "
-#~ "href=\"%(passwd_reset_url)s\">новый сброс пароля</a>."
-
-#~ msgid "change password"
-#~ msgstr "изменить пароль"
-
-#~ msgid "Your password is now changed."
-#~ msgstr "Ваш пароль был изменен."
-
-#~ msgid "Set Password"
-#~ msgstr "Установить пароль"
-
-#~ msgid "Signup"
-#~ msgstr "Регистрация"
-
-#, python-format
-#~ msgid ""
-#~ "Already have an account? Then please <a href=\"%(login_url)s\">sign in</"
-#~ "a>."
-#~ msgstr ""
-#~ "Уже есть аккаунт? Пожалуйста, <a href=\"%(login_url)s\">войдите</a>."
-
-#~ msgid "Sign Up Closed"
-#~ msgstr "Регистрация закрыта"
-
-#~ msgid "We are sorry, but the sign up is currently closed."
-#~ msgstr "К сожалению, регистрация в настоящее время закрыта."
-
-#~ msgid "Verify Your E-mail Address"
-#~ msgstr "Подтвердите свой адрес электронной почты"
-
-#~ msgid ""
-#~ "We have sent an e-mail to you for verification. Follow the link provided "
-#~ "to finalize the signup process. Please contact us if you do not receive "
-#~ "it within a few minutes."
-#~ msgstr ""
-#~ "Мы отправили вам письмо для подтверждения. Следуйте предоставленной "
-#~ "ссылке, чтобы завершить процесс регистрации. Пожалуйста, свяжитесь с "
-#~ "нами, если вы не получите его в течение нескольких минут."
-
-#~ msgid ""
-#~ "This part of the site requires us to verify that\n"
-#~ "you are who you claim to be. For this purpose, we require that you\n"
-#~ "verify ownership of your e-mail address. "
-#~ msgstr ""
-#~ "Эта часть сайта требует от нас проверки, что\n"
-#~ "вы тот, за кого себя выдаете. Для этого нам необходимо, чтобы вы\n"
-#~ "подтвердили владение своим адресом электронной почты."
-
-#~ msgid ""
-#~ "We have sent an e-mail to you for\n"
-#~ "verification. Please click on the link inside this e-mail. Please\n"
-#~ "contact us if you do not receive it within a few minutes."
-#~ msgstr ""
-#~ "Мы отправили вам письмо для\n"
-#~ "подтверждения. Пожалуйста, нажмите на ссылку в этом письме. Пожалуйста,\n"
-#~ "свяжитесь с нами, если вы не получите его в течение нескольких минут."
-
-#, python-format
-#~ msgid ""
-#~ "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change "
-#~ "your e-mail address</a>."
-#~ msgstr ""
-#~ "<strong>Примечание:</strong> вы все еще можете <a "
-#~ "href=\"%(email_url)s\">изменить свой адрес электронной почты</a>."

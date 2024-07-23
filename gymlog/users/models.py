@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models import BooleanField
 from django.db.models import CharField
 from django.db.models import ImageField
+from django.db.models import TextChoices
 from django.db.models import TextField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -16,11 +17,21 @@ class User(UUIDModel, AbstractUser):
     check forms.SignupForm and forms.SocialSignupForms accordingly.
     """
 
+    class Languages(TextChoices):
+        ENGLISH = "en", _("English")
+        RUSSIAN = "ru", _("Russian")
+        SPANISH = "es", _("Spanish")
+
     # First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
     first_name = None  # type: ignore[assignment]
     last_name = None  # type: ignore[assignment]
-    language = CharField(_("Preferred language"), max_length=10, blank=True)
+    language = CharField(
+        _("Preferred language"),
+        max_length=10,
+        blank=True,
+        choices=Languages.choices,
+    )
     bio = TextField(_("Bio"), blank=True)
     profile_picture = ImageField(
         _("Profile Picture"),

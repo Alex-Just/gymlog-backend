@@ -18,6 +18,9 @@ class UUIDModel(Model):
 
 
 class GeneralModelAdmin(admin.ModelAdmin):
+    def get_autocomplete_fields(self, request):
+        return self.list_select_related
+
     def get_readonly_fields(self, request, obj=None):
         fields = super().get_readonly_fields(request, obj)
         return [*list(fields), "created", "modified"]

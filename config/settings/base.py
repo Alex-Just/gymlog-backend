@@ -82,6 +82,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
+    "modeltranslation",
 ]
 
 LOCAL_APPS = [
@@ -90,6 +91,12 @@ LOCAL_APPS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+# modeltranslation must be put before django.contrib.admin
+INSTALLED_APPS.insert(
+    INSTALLED_APPS.index("django.contrib.admin"),
+    INSTALLED_APPS.pop(INSTALLED_APPS.index("modeltranslation")),
+)
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
