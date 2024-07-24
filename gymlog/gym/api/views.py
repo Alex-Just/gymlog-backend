@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from gymlog.gym.api.serializers import ExerciseDetailSerializer
@@ -14,6 +15,7 @@ from gymlog.gym.models import Workout
 
 
 class ExerciseViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Exercise.objects.all()
 
     def get_serializer_class(self):
@@ -23,8 +25,11 @@ class ExerciseViewSet(viewsets.ModelViewSet):
 
 
 class WorkoutViewSet(viewsets.ModelViewSet):
-    queryset = Workout.objects.all()
+    permission_classes = [IsAuthenticated]
     serializer_class = WorkoutSerializer
+
+    def get_queryset(self):
+        return Workout.objects.filter(routine__user=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -40,8 +45,13 @@ class WorkoutViewSet(viewsets.ModelViewSet):
 
 
 class SetLogViewSet(viewsets.ModelViewSet):
-    queryset = SetLog.objects.all()
+    permission_classes = [IsAuthenticated]
     serializer_class = SetLogSerializer
+
+    def get_queryset(self):
+        return SetLog.objects.filter(
+            exercise_log__workout__routine__user=self.request.user,
+        )
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -52,7 +62,11 @@ class SetLogViewSet(viewsets.ModelViewSet):
 
 
 class RoutineViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Routine.objects.all()
+
+    def get_queryset(self):
+        return Routine.objects.filter(user=self.request.user)
 
     def get_serializer_class(self):
         if self.action == "list":
