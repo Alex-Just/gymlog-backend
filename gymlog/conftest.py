@@ -5,6 +5,9 @@ from gymlog.gym.models import Routine
 from gymlog.gym.models import Workout
 from gymlog.gym.tests.factories import ExerciseFactory
 from gymlog.gym.tests.factories import ExerciseLogFactory
+from gymlog.gym.tests.factories import RoutineExerciseFactory
+from gymlog.gym.tests.factories import RoutineFactory
+from gymlog.gym.tests.factories import RoutineSetFactory
 from gymlog.gym.tests.factories import SetLogFactory
 from gymlog.users.models import User
 from gymlog.users.tests.factories import UserFactory
@@ -26,10 +29,9 @@ def user(db) -> User:
 
 
 @pytest.fixture()
-def workout(user):
+def workout(user: User) -> Workout:
     routine = Routine.objects.create(user=user, name="Test Routine")
     workout = Workout.objects.create(
-        user=user,
         routine=routine,
         duration="00:45:00",
         volume=100.0,
@@ -45,3 +47,12 @@ def workout(user):
         SetLogFactory(exercise_log=exercise_log1, order=i + 1)
         SetLogFactory(exercise_log=exercise_log2, order=i + 1)
     return workout
+
+
+@pytest.fixture()
+def routine(user: User) -> Routine:
+    routine = RoutineFactory(user=user)
+    routine_exercise = RoutineExerciseFactory(routine=routine, order=1)
+    for i in range(3):
+        RoutineSetFactory(routine_exercise=routine_exercise, order=i + 1)
+    return routine

@@ -1,13 +1,19 @@
+from datetime import timedelta
+
 import pytest
 from rest_framework.test import APIClient
 from rest_framework.test import APIRequestFactory
 
+from gymlog.gym.models import Routine
 from gymlog.gym.models import Workout
 from gymlog.gym.tests.factories import ExerciseFactory
 from gymlog.users.models import User
 
 STATUS_OK = 200
+STATUS_CREATED = 201
+STATUS_NO_CONTENT = 204
 STATUS_BAD_REQUEST = 400
+STATUS_NOT_FOUND = 404
 
 
 class TestWorkoutViewSet:
@@ -58,10 +64,12 @@ class TestWorkoutViewSet:
         api_client.force_authenticate(user=user)
         url = f"/api/workouts/{workout.id}/"
 
+        workout_end = (workout.created + timedelta(minutes=90)).isoformat()
         new_data = {
             "duration": "01:00:00",
             "volume": new_volume,
             "routine_id": str(workout.routine.id),
+            "end": workout_end,
             "exercise_logs": [
                 {
                     "order": 1,
@@ -82,6 +90,7 @@ class TestWorkoutViewSet:
 
         workout.refresh_from_db()
         assert str(workout.duration) == "1:00:00"
+        assert workout.end.isoformat() == workout_end
         assert workout.volume == pytest.approx(new_volume)
 
         exercise_log = workout.exercise_logs.first()
@@ -470,3 +479,109 @@ class TestWorkoutViewSet:
         assert set_logs_2[0].reps == new_reps_2
         assert set_logs_2[1].weight == pytest.approx(new_weight_2 + 5)
         assert set_logs_2[1].reps == new_reps_2 + 2
+
+
+class TestRoutineViewSet:
+    def test_get_routine(self, user: User, api_client: APIClient, routine: Routine):
+        api_client.force_authenticate(user=user)
+        url = f"/api/routines/{routine.id}/"
+
+        response = api_client.get(url)
+        assert response.status_code == STATUS_OK
+
+        routine_data = response.json()
+
+        assert routine_data["name"] == routine.name
+        assert len(routine_data["routine_exercises"]) == 1
+
+        for routine_exercise in routine_data["routine_exercises"]:
+            routine_set_count = routine.routine_exercises.last().routine_sets.count()
+            assert len(routine_exercise["routine_sets"]) == routine_set_count
+
+    def test_create_routine(self, user: User, api_client: APIClient):
+        api_client.force_authenticate(user=user)
+        url = "/api/routines/"
+
+        new_routine_data = {
+            "name": "New Routine",
+            "routine_exercises": [
+                {
+                    "order": 1,
+                    "exercise_id": str(ExerciseFactory().id),
+                    "rest_timer": "00:01:00",
+                    "note": "Test Note",
+                    "routine_sets": [
+                        {
+                            "order": 1,
+                            "weight": 10.0,
+                            "reps": 11,
+                        },
+                        {
+                            "order": 2,
+                            "weight": 20.0,
+                            "reps": 12,
+                        },
+                    ],
+                },
+            ],
+        }
+
+        response = api_client.post(url, new_routine_data, format="json")
+        assert response.status_code == STATUS_CREATED
+
+        got_routine_data = response.json()
+        assert got_routine_data["name"] == new_routine_data["name"]
+
+        got_routine_exercises = got_routine_data["routine_exercises"]
+        assert len(got_routine_exercises) == 1
+        assert len(got_routine_exercises[0]["routine_sets"]) == len(
+            new_routine_data["routine_exercises"][0]["routine_sets"],
+        )
+        assert (
+            got_routine_exercises[0]["routine_sets"][0]["order"]
+            == new_routine_data["routine_exercises"][0]["routine_sets"][0]["order"]
+        )
+        assert (
+            got_routine_exercises[0]["routine_sets"][1]["order"]
+            == new_routine_data["routine_exercises"][0]["routine_sets"][1]["order"]
+        )
+
+    def test_update_routine(self, user: User, api_client: APIClient, routine: Routine):
+        api_client.force_authenticate(user=user)
+        url = f"/api/routines/{routine.id}/"
+
+        updated_routine_data = {
+            "name": "Updated Routine",
+            "routine_exercises": [
+                {
+                    "order": 1,
+                    "exercise_id": str(routine.routine_exercises.first().exercise.id),
+                    "rest_timer": "00:02:00",
+                    "note": "Updated Note",
+                    "routine_sets": [
+                        {
+                            "order": 1,
+                            "weight": 60.0,
+                            "reps": 12,
+                        },
+                    ],
+                },
+            ],
+        }
+
+        response = api_client.put(url, updated_routine_data, format="json")
+        assert response.status_code == STATUS_OK
+
+        routine.refresh_from_db()
+        assert routine.name == updated_routine_data["name"]
+        assert routine.routine_exercises.first().note == "Updated Note"
+
+    def test_delete_routine(self, user: User, api_client: APIClient, routine: Routine):
+        api_client.force_authenticate(user=user)
+        url = f"/api/routines/{routine.id}/"
+
+        response = api_client.delete(url)
+        assert response.status_code == STATUS_NO_CONTENT
+
+        with pytest.raises(Routine.DoesNotExist):
+            routine.refresh_from_db()

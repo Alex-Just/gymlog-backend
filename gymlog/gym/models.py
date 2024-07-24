@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db.models import CASCADE
 from django.db.models import SET_NULL
 from django.db.models import CharField
+from django.db.models import DateTimeField
 from django.db.models import DurationField
 from django.db.models import FloatField
 from django.db.models import ForeignKey
@@ -10,7 +11,6 @@ from django.db.models import PositiveIntegerField
 from django.db.models import TextChoices
 from django.db.models import TextField
 from django.utils.translation import gettext_lazy as _
-from model_utils.models import TimeFramedModel
 from model_utils.models import TimeStampedModel
 from multiselectfield import MultiSelectField
 
@@ -175,12 +175,7 @@ class RoutineSet(TimeStampedModel, UUIDModel):
         )
 
 
-class Workout(TimeFramedModel, TimeStampedModel, UUIDModel):
-    user = ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=CASCADE,
-        related_name="workouts",
-    )
+class Workout(TimeStampedModel, UUIDModel):
     routine = ForeignKey(
         Routine,
         on_delete=SET_NULL,
@@ -190,13 +185,13 @@ class Workout(TimeFramedModel, TimeStampedModel, UUIDModel):
     )
     duration = DurationField(_("Duration"), blank=True, null=True)
     volume = FloatField(_("Volume"), blank=True, null=True, default=0.0)
+    end = DateTimeField(_("End Time"), null=True, blank=True)
 
     class Meta:
         db_table = "workouts"
         verbose_name = _("Workout")
         verbose_name_plural = _("Workouts")
-        ordering = ["-start"]
-        unique_together = ("user", "routine")
+        ordering = ["-created"]
 
     def __str__(self):
         return f"Duration: {self.duration}, Volume: {self.volume} [ID={self.id}]"
@@ -223,6 +218,7 @@ class SetLog(TimeStampedModel, UUIDModel):
     order = PositiveIntegerField(_("Order"))
     weight = FloatField(_("Weight"))
     reps = PositiveIntegerField(_("Reps"))
+    end = DateTimeField(_("End Time"), null=True, blank=True)
 
     class Meta:
         db_table = "set_logs"

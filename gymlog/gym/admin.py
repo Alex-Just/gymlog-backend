@@ -54,10 +54,10 @@ class RoutineSetAdmin(GeneralModelAdmin):
 
 @admin.register(Workout)
 class WorkoutAdmin(GeneralModelAdmin):
-    list_display = ("user", "routine", "start", "end", "duration", "volume")
-    search_fields = ("user__username", "routine__name")
+    list_display = ("routine", "created", "end", "duration", "volume")
+    search_fields = ("routine__user__username", "routine__name")
     list_filter = ("routine",)
-    list_select_related = ("user", "routine")
+    list_select_related = ("routine__user", "routine")
 
 
 @admin.register(ExerciseLog)
