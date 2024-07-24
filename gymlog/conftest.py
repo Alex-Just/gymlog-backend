@@ -1,6 +1,7 @@
 import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.test import APIClient
+from rest_framework.test import APIRequestFactory
 
 from gymlog.gym.models import Exercise
 from gymlog.gym.models import Routine
@@ -13,6 +14,11 @@ from gymlog.gym.tests.factories import RoutineSetFactory
 from gymlog.gym.tests.factories import SetLogFactory
 from gymlog.users.models import User
 from gymlog.users.tests.factories import UserFactory
+
+
+@pytest.fixture()
+def api_rf() -> APIRequestFactory:
+    return APIRequestFactory()
 
 
 @pytest.fixture()

@@ -11,7 +11,13 @@ from gymlog.gym.models import SetLog
 from gymlog.gym.models import Workout
 
 
-class ExerciseSerializer(serializers.ModelSerializer):
+class ExerciseListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exercise
+        fields = ["id", "name", "primary_muscle_group"]
+
+
+class ExerciseDetailSerializer(serializers.ModelSerializer):
     other_muscles = MultipleChoiceField(
         choices=Exercise.MuscleGroups.choices,
         allow_blank=True,
@@ -166,38 +172,44 @@ class RoutineExerciseSerializer(serializers.ModelSerializer):
         ]
 
 
-class RoutineSerializer(serializers.ModelSerializer):
+class RoutineListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Routine
+        fields = ["id", "name"]
+
+
+class RoutineDetailSerializer(serializers.ModelSerializer):
     routine_exercises = RoutineExerciseSerializer(many=True)
 
     """E.g.
-    {
-        "id": "0190e5f0-d9ed-78d2-940f-7945548a552b",
-        "created": "2024-07-24T18:11:25.293236Z",
-        "modified": "2024-07-24T18:11:25.293236Z",
-        "name": "TestRoutine1",
-        "routine_exercises": [
-            {
-                "id": "0190e5f0-d9f5-72f1-9854-58f9d5479669",
-                "created": "2024-07-24T18:11:25.301404Z",
-                "modified": "2024-07-24T18:11:25.301404Z",
-                "order": 1,
-                "exercise_id": "0190e5f0-d9ee-7ef2-a715-0d1d87cbe3ac",
-                "rest_timer": "00:01:00",
-                "note": "",
-                "routine_sets": [
-                    {
-                        "id": "0190e5f0-d9f6-7393-8cd7-89c5603221c7",
-                        "created": "2024-07-24T18:11:25.302524Z",
-                        "modified": "2024-07-24T18:11:25.302524Z",
-                        "order": 1,
-                        "weight": 87.5,
-                        "reps": 9
-                    }
-                ]
-            }
-        ]
-    }
-    """
+        {
+            "id": "0190e5f0-d9ed-78d2-940f-7945548a552b",
+            "created": "2024-07-24T18:11:25.293236Z",
+            "modified": "2024-07-24T18:11:25.293236Z",
+            "name": "TestRoutine1",
+            "routine_exercises": [
+                {
+                    "id": "0190e5f0-d9f5-72f1-9854-58f9d5479669",
+                    "created": "2024-07-24T18:11:25.301404Z",
+                    "modified": "2024-07-24T18:11:25.301404Z",
+                    "order": 1,
+                    "exercise_id": "0190e5f0-d9ee-7ef2-a715-0d1d87cbe3ac",
+                    "rest_timer": "00:01:00",
+                    "note": "",
+                    "routine_sets": [
+                        {
+                            "id": "0190e5f0-d9f6-7393-8cd7-89c5603221c7",
+                            "created": "2024-07-24T18:11:25.302524Z",
+                            "modified": "2024-07-24T18:11:25.302524Z",
+                            "order": 1,
+                            "weight": 87.5,
+                            "reps": 9
+                        }
+                    ]
+                }
+            ]
+        }
+        """
 
     class Meta:
         model = Routine

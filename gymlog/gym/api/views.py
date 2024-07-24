@@ -1,8 +1,10 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from gymlog.gym.api.serializers import ExerciseSerializer
-from gymlog.gym.api.serializers import RoutineSerializer
+from gymlog.gym.api.serializers import ExerciseDetailSerializer
+from gymlog.gym.api.serializers import ExerciseListSerializer
+from gymlog.gym.api.serializers import RoutineDetailSerializer
+from gymlog.gym.api.serializers import RoutineListSerializer
 from gymlog.gym.api.serializers import SetLogSerializer
 from gymlog.gym.api.serializers import WorkoutSerializer
 from gymlog.gym.models import Exercise
@@ -13,7 +15,11 @@ from gymlog.gym.models import Workout
 
 class ExerciseViewSet(viewsets.ModelViewSet):
     queryset = Exercise.objects.all()
-    serializer_class = ExerciseSerializer
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return ExerciseListSerializer
+        return ExerciseDetailSerializer
 
 
 class WorkoutViewSet(viewsets.ModelViewSet):
@@ -47,4 +53,8 @@ class SetLogViewSet(viewsets.ModelViewSet):
 
 class RoutineViewSet(viewsets.ModelViewSet):
     queryset = Routine.objects.all()
-    serializer_class = RoutineSerializer
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return RoutineListSerializer
+        return RoutineDetailSerializer

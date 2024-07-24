@@ -2,8 +2,8 @@ from datetime import timedelta
 
 import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.urls import reverse
 from rest_framework.test import APIClient
-from rest_framework.test import APIRequestFactory
 
 from gymlog.gym.models import Exercise
 from gymlog.gym.models import Routine
@@ -17,18 +17,20 @@ STATUS_NO_CONTENT = 204
 STATUS_BAD_REQUEST = 400
 STATUS_NOT_FOUND = 404
 
+SMALL_GIF = (
+    b"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80"
+    b"\x00\x00\x05\x04\x04\x00\x00\x00\x2c\x00\x00\x00"
+    b"\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3b"
+)
+
 
 class TestWorkoutViewSet:
-    @pytest.fixture()
-    def api_rf(self) -> APIRequestFactory:
-        return APIRequestFactory()
-
     def test_get_workout(self, user: User, api_client: APIClient, workout: Workout):
         exercise_logs_count = 2
         set_logs_count = 3
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         response = api_client.get(url)
         assert response.status_code == STATUS_OK
@@ -47,7 +49,7 @@ class TestWorkoutViewSet:
         workout: Workout,
     ):
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         invalid_data = {
             "duration": "invalid_duration",
@@ -64,7 +66,7 @@ class TestWorkoutViewSet:
         new_reps = 10
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         workout_end = (workout.created + timedelta(minutes=90)).isoformat()
         new_data = {
@@ -113,7 +115,7 @@ class TestWorkoutViewSet:
         new_reps_2 = 15
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         new_data = {
             "duration": "01:30:00",
@@ -175,7 +177,7 @@ class TestWorkoutViewSet:
         new_exercise = ExerciseFactory(name="New Exercise")
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         new_data = {
             "duration": "01:15:00",
@@ -223,7 +225,7 @@ class TestWorkoutViewSet:
         new_exercise = ExerciseFactory(name="Another New Exercise")
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         new_data = {
             "duration": "01:20:00",
@@ -283,7 +285,7 @@ class TestWorkoutViewSet:
         new_reps = [12, 15, 18]
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         new_data = {
             "duration": "01:15:00",
@@ -340,7 +342,7 @@ class TestWorkoutViewSet:
         new_reps_2 = [18, 20, 22]
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         new_data = {
             "duration": "01:30:00",
@@ -426,7 +428,7 @@ class TestWorkoutViewSet:
         new_exercise = ExerciseFactory(name="Another New Exercise")
 
         api_client.force_authenticate(user=user)
-        url = f"/api/workouts/{workout.id}/"
+        url = reverse("api:workout-detail", kwargs={"pk": workout.id})
 
         new_data = {
             "duration": "01:20:00",
@@ -484,15 +486,38 @@ class TestWorkoutViewSet:
 
 
 class TestRoutineViewSet:
-    def test_get_routine(self, user: User, api_client: APIClient, routine: Routine):
+    def test_get_routine_list(
+        self,
+        user: User,
+        api_client: APIClient,
+        routine: Routine,
+    ):
         api_client.force_authenticate(user=user)
-        url = f"/api/routines/{routine.id}/"
+        url = reverse("api:routine-list")
+
+        response = api_client.get(url)
+        assert response.status_code == STATUS_OK
+
+        routine_list = response.json()
+        assert len(routine_list) > 0
+        for routine_data in routine_list:
+            assert "id" in routine_data
+            assert "name" in routine_data
+            assert "routine_exercises" not in routine_data
+
+    def test_get_routine_detail(
+        self,
+        user: User,
+        api_client: APIClient,
+        routine: Routine,
+    ):
+        api_client.force_authenticate(user=user)
+        url = reverse("api:routine-detail", kwargs={"pk": routine.id})
 
         response = api_client.get(url)
         assert response.status_code == STATUS_OK
 
         routine_data = response.json()
-
         assert routine_data["name"] == routine.name
         assert len(routine_data["routine_exercises"]) == 1
 
@@ -502,7 +527,7 @@ class TestRoutineViewSet:
 
     def test_create_routine(self, user: User, api_client: APIClient):
         api_client.force_authenticate(user=user)
-        url = "/api/routines/"
+        url = reverse("api:routine-list")
 
         new_routine_data = {
             "name": "New Routine",
@@ -550,7 +575,7 @@ class TestRoutineViewSet:
 
     def test_update_routine(self, user: User, api_client: APIClient, routine: Routine):
         api_client.force_authenticate(user=user)
-        url = f"/api/routines/{routine.id}/"
+        url = reverse("api:routine-detail", kwargs={"pk": routine.id})
 
         updated_routine_data = {
             "name": "Updated Routine",
@@ -580,7 +605,7 @@ class TestRoutineViewSet:
 
     def test_delete_routine(self, user: User, api_client: APIClient, routine: Routine):
         api_client.force_authenticate(user=user)
-        url = f"/api/routines/{routine.id}/"
+        url = reverse("api:routine-detail", kwargs={"pk": routine.id})
 
         response = api_client.delete(url)
         assert response.status_code == STATUS_NO_CONTENT
@@ -590,9 +615,34 @@ class TestRoutineViewSet:
 
 
 class TestExerciseViewSet:
-    def test_get_exercise(self, user: User, api_client: APIClient, exercise: Exercise):
+    def test_get_exercise_list(
+        self,
+        user: User,
+        api_client: APIClient,
+        exercise: Exercise,
+    ):
         api_client.force_authenticate(user=user)
-        url = f"/api/exercises/{exercise.id}/"
+        url = reverse("api:exercise-list")
+
+        response = api_client.get(url)
+        assert response.status_code == STATUS_OK
+
+        exercise_list = response.json()
+        assert len(exercise_list) > 0
+        for exercise_data in exercise_list:
+            assert "name" in exercise_data
+            assert "primary_muscle_group" in exercise_data
+            assert "exercise_type" not in exercise_data
+            assert "equipment" not in exercise_data
+
+    def test_get_exercise_detail(
+        self,
+        user: User,
+        api_client: APIClient,
+        exercise: Exercise,
+    ):
+        api_client.force_authenticate(user=user)
+        url = reverse("api:exercise-detail", kwargs={"pk": exercise.id})
 
         response = api_client.get(url)
         assert response.status_code == STATUS_OK
@@ -607,7 +657,7 @@ class TestExerciseViewSet:
 
     def test_create_exercise(self, user: User, api_client: APIClient):
         api_client.force_authenticate(user=user)
-        url = "/api/exercises/"
+        url = reverse("api:exercise-list")
         small_gif = (
             b"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x05\x04"
             b"\x04\x00\x00\x00\x2c\x00\x00\x00"
@@ -655,7 +705,7 @@ class TestExerciseViewSet:
         exercise: Exercise,
     ):
         api_client.force_authenticate(user=user)
-        url = f"/api/exercises/{exercise.id}/"
+        url = reverse("api:exercise-detail", kwargs={"pk": exercise.id})
 
         payload = {
             "name": "Updated Exercise",
@@ -678,7 +728,7 @@ class TestExerciseViewSet:
         exercise: Exercise,
     ):
         api_client.force_authenticate(user=user)
-        url = f"/api/exercises/{exercise.id}/"
+        url = reverse("api:exercise-detail", kwargs={"pk": exercise.id})
 
         response = api_client.delete(url)
         assert response.status_code == STATUS_NO_CONTENT
