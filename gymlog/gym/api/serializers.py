@@ -1,12 +1,36 @@
 from django.db import transaction
 from rest_framework import serializers
+from rest_framework.fields import MultipleChoiceField
 
+from gymlog.gym.models import Exercise
 from gymlog.gym.models import ExerciseLog
 from gymlog.gym.models import Routine
 from gymlog.gym.models import RoutineExercise
 from gymlog.gym.models import RoutineSet
 from gymlog.gym.models import SetLog
 from gymlog.gym.models import Workout
+
+
+class ExerciseSerializer(serializers.ModelSerializer):
+    other_muscles = MultipleChoiceField(
+        choices=Exercise.MuscleGroups.choices,
+        allow_blank=True,
+    )
+
+    class Meta:
+        model = Exercise
+        fields = [
+            "id",
+            "name",
+            "exercise_type",
+            "equipment",
+            "primary_muscle_group",
+            "other_muscles",
+            "small_image",
+            "large_image",
+            "created",
+            "modified",
+        ]
 
 
 class SetLogSerializer(serializers.ModelSerializer):

@@ -1,12 +1,19 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+from gymlog.gym.api.serializers import ExerciseSerializer
 from gymlog.gym.api.serializers import RoutineSerializer
 from gymlog.gym.api.serializers import SetLogSerializer
 from gymlog.gym.api.serializers import WorkoutSerializer
+from gymlog.gym.models import Exercise
 from gymlog.gym.models import Routine
 from gymlog.gym.models import SetLog
 from gymlog.gym.models import Workout
+
+
+class ExerciseViewSet(viewsets.ModelViewSet):
+    queryset = Exercise.objects.all()
+    serializer_class = ExerciseSerializer
 
 
 class WorkoutViewSet(viewsets.ModelViewSet):

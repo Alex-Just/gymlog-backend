@@ -1,9 +1,11 @@
 from datetime import timedelta
 
 import pytest
+from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.test import APIClient
 from rest_framework.test import APIRequestFactory
 
+from gymlog.gym.models import Exercise
 from gymlog.gym.models import Routine
 from gymlog.gym.models import Workout
 from gymlog.gym.tests.factories import ExerciseFactory
@@ -585,3 +587,101 @@ class TestRoutineViewSet:
 
         with pytest.raises(Routine.DoesNotExist):
             routine.refresh_from_db()
+
+
+class TestExerciseViewSet:
+    def test_get_exercise(self, user: User, api_client: APIClient, exercise: Exercise):
+        api_client.force_authenticate(user=user)
+        url = f"/api/exercises/{exercise.id}/"
+
+        response = api_client.get(url)
+        assert response.status_code == STATUS_OK
+
+        exercise_data = response.json()
+        assert exercise_data["name"] == exercise.name
+        assert exercise_data["exercise_type"] == exercise.exercise_type
+        assert exercise_data["equipment"] == exercise.equipment
+        assert exercise_data["primary_muscle_group"] == exercise.primary_muscle_group
+        assert exercise_data["small_image"] is not None
+        assert exercise_data["large_image"] is not None
+
+    def test_create_exercise(self, user: User, api_client: APIClient):
+        api_client.force_authenticate(user=user)
+        url = "/api/exercises/"
+        small_gif = (
+            b"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x05\x04"
+            b"\x04\x00\x00\x00\x2c\x00\x00\x00"
+            b"\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3b"
+        )
+        small_image = SimpleUploadedFile(
+            name="small_image.jpg",
+            content=small_gif,
+            content_type="image/jpeg",
+        )
+        large_image = SimpleUploadedFile(
+            name="large_image.jpg",
+            content=small_gif,
+            content_type="image/jpeg",
+        )
+        payload = {
+            "name": "New Exercise",
+            "exercise_type": Exercise.ExerciseTypes.WEIGHT_REPS.value,
+            "equipment": Exercise.Equipments.BARBELL.value,
+            "primary_muscle_group": Exercise.MuscleGroups.BICEPS.value,
+            "other_muscles": [
+                Exercise.MuscleGroups.FOREARMS.value,
+                Exercise.MuscleGroups.SHOULDERS.value,
+            ],
+            "small_image": small_image,
+            "large_image": large_image,
+        }
+
+        response = api_client.post(url, payload, format="multipart")
+        assert response.status_code == STATUS_CREATED
+
+        got_exercise = response.json()
+        assert got_exercise["name"] == payload["name"]
+        assert got_exercise["exercise_type"] == payload["exercise_type"]
+        assert got_exercise["equipment"] == payload["equipment"]
+        assert got_exercise["primary_muscle_group"] == payload["primary_muscle_group"]
+        assert set(got_exercise["other_muscles"]) == set(payload["other_muscles"])
+        assert got_exercise["small_image"] is not None
+        assert got_exercise["large_image"] is not None
+
+    def test_update_exercise(
+        self,
+        user: User,
+        api_client: APIClient,
+        exercise: Exercise,
+    ):
+        api_client.force_authenticate(user=user)
+        url = f"/api/exercises/{exercise.id}/"
+
+        payload = {
+            "name": "Updated Exercise",
+            "exercise_type": exercise.exercise_type,
+            "equipment": exercise.equipment,
+            "primary_muscle_group": exercise.primary_muscle_group,
+            "other_muscles": exercise.other_muscles.split(","),
+        }
+
+        response = api_client.put(url, payload, format="json")
+        assert response.status_code == STATUS_OK
+
+        exercise.refresh_from_db()
+        assert exercise.name == payload["name"]
+
+    def test_delete_exercise(
+        self,
+        user: User,
+        api_client: APIClient,
+        exercise: Exercise,
+    ):
+        api_client.force_authenticate(user=user)
+        url = f"/api/exercises/{exercise.id}/"
+
+        response = api_client.delete(url)
+        assert response.status_code == STATUS_NO_CONTENT
+
+        with pytest.raises(Exercise.DoesNotExist):
+            exercise.refresh_from_db()

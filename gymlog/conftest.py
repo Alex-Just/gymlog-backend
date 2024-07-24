@@ -1,6 +1,8 @@
 import pytest
+from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.test import APIClient
 
+from gymlog.gym.models import Exercise
 from gymlog.gym.models import Routine
 from gymlog.gym.models import Workout
 from gymlog.gym.tests.factories import ExerciseFactory
@@ -26,6 +28,21 @@ def _media_storage(settings, tmpdir) -> None:
 @pytest.fixture()
 def user(db) -> User:
     return UserFactory()
+
+
+@pytest.fixture()
+def exercise() -> Exercise:
+    small_image = SimpleUploadedFile(
+        name="small_image.jpg",
+        content=b"",
+        content_type="image/jpeg",
+    )
+    large_image = SimpleUploadedFile(
+        name="large_image.jpg",
+        content=b"",
+        content_type="image/jpeg",
+    )
+    return ExerciseFactory(small_image=small_image, large_image=large_image)
 
 
 @pytest.fixture()
