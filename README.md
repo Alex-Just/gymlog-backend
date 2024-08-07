@@ -1,15 +1,66 @@
-# gymlog
+# Gymlog Backend
 
-Workout Tracker
+Gymlog is a workout tracking application designed to help users manage and record their fitness routines efficiently. This repository contains the backend code for the Gymlog application, which handles the core logic, data storage, and API endpoints.
+The backend is built with a focus on scalability and performance, using modern technologies and best practices.
+
+[![Frontend](https://img.shields.io/badge/frontend-repo-blue)](https://github.com/Alex-Just/gymlog-frontend)
+[![Backend CI](https://github.com/Alex-Just/gymlog-backend/actions/workflows/ci.yml/badge.svg?branch=stage)](https://github.com/Alex-Just/gymlog-backend/actions/workflows/ci.yml)
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-License: MIT
+## Table of Contents
 
-## Settings
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Tech Features](#tech-features)
+- [Constraints](#constraints)
+- [Basic Commands](#basic-commands)
+  - [Setting Up Your Users](#setting-up-your-users)
+  - [Type Checks](#type-checks)
+  - [Test Coverage](#test-coverage)
+    - [Running Tests with Pytest](#running-tests-with-pytest)
+  - [Celery](#celery)
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+This updated structure maintains a clear and concise outline for easy navigation of your project's documentation.
+
+## Features
+
+- **Workout Tracking**: Log exercises, sets, and reps for different workouts.
+- **Progress Monitoring**: View progress over time with charts and stats.
+- **Custom Routines**: Create and manage custom workout routines.
+- **Profile Management**: Update personal information and track personal bests.
+
+## Technologies Used
+
+- **Python**: The primary programming language used for backend development.
+- **Django**: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+- **Django Rest Framework (DRF)**: A powerful and flexible toolkit for building Web APIs.
+- **PostgreSQL**: A powerful, open-source object-relational database system.
+- **Celery**: An asynchronous task queue/job queue based on distributed message passing.
+- **Redis**: An in-memory data structure store, used as a database, cache, and message broker.
+- **Docker**: A set of platform-as-a-service products that use OS-level virtualization to deliver software in packages called containers.
+- **GitHub Actions**: Used for continuous integration and deployment.
+
+## Tech Features
+
+- [12-Factor](https://12factor.net) based settings via [django-environ](https://github.com/joke2k/django-environ)
+- Secure by default. We believe in SSL.
+- Registration via [django-allauth](https://github.com/pennersr/django-allauth)
+- Send emails via [Anymail](https://github.com/anymail/django-anymail) (using [Mailgun](http://www.mailgun.com/) by default or Amazon SES if AWS is selected cloud provider, but switchable)
+- Media storage using Amazon S3, Google Cloud Storage, Azure Storage or nginx
+- Docker support using [docker-compose](https://github.com/docker/compose) for development and production (using [Traefik](https://traefik.io/) with [LetsEncrypt](https://letsencrypt.org/) support)
+- [Procfile](https://devcenter.heroku.com/articles/procfile) for deploying to Heroku
+- Instructions for deploying to [PythonAnywhere](https://www.pythonanywhere.com/)
+- Run tests with unittest or pytest
+- Customizable PostgreSQL version
+- Default integration with [pre-commit](https://github.com/pre-commit/pre-commit) for identifying simple issues before submission to code review
+
+## Constraints
+
+- Only maintained 3rd party libraries are used.
+- Uses PostgreSQL everywhere: 12 - 16.
+- Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 ## Basic Commands
 
@@ -41,10 +92,6 @@ To run the tests, check your test coverage, and generate an HTML coverage report
 
     $ pytest
 
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
-
 ### Celery
 
 This app comes with Celery.
@@ -71,27 +118,3 @@ or you can embed the beat service inside a worker with the `-B` option (not reco
 cd gymlog
 celery -A config.celery_app worker -B -l info
 ```
-
-### Email Server
-
-In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [Mailpit](https://github.com/axllent/mailpit) with a web interface is available as docker container.
-
-Container mailpit will start automatically when you will run all docker containers.
-Please check [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
-
-With Mailpit running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
-
-### Sentry
-
-Sentry is an error logging aggregator service. You can sign up for a free account at <https://sentry.io/signup/?code=cookiecutter> or download and host it yourself.
-The system is set up with reasonable defaults, including 404 logging and integration with the WSGI application.
-
-You must set the DSN url in production.
-
-## Deployment
-
-The following details how to deploy this application.
-
-### Docker
-
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
