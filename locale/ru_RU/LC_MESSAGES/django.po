@@ -1,6 +1,3 @@
-# Translations for the gymlog project
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
@@ -166,10 +163,10 @@ msgid "Exercises"
 msgstr "Упражнения"
 
 msgid "Routine"
-msgstr "Тренировка"
+msgstr "Программа"
 
 msgid "Routines"
-msgstr "Тренировки"
+msgstr "Программы"
 
 msgid "Order"
 msgstr "Порядок"
@@ -181,10 +178,10 @@ msgid "Note"
 msgstr "Заметка"
 
 msgid "Routine Exercise"
-msgstr "Упражнение в тренировке"
+msgstr "Упражнение в программе"
 
 msgid "Routine Exercises"
-msgstr "Упражнения в тренировке"
+msgstr "Упражнения в программе"
 
 msgid "Weight"
 msgstr "Вес"
@@ -193,10 +190,10 @@ msgid "Reps"
 msgstr "Повторения"
 
 msgid "Routine Set"
-msgstr "Набор упражнений"
+msgstr "Подходы в программе"
 
 msgid "Routine Sets"
-msgstr "Наборы упражнений"
+msgstr "Подходы в программах"
 
 msgid "Volume"
 msgstr "Объем"
