@@ -66,7 +66,13 @@ class RoutineViewSet(viewsets.ModelViewSet):
     queryset = Routine.objects.all()
 
     def get_queryset(self):
-        return Routine.objects.filter(user=self.request.user)
+        qs = Routine.objects.filter(user=self.request.user)
+        if self.action == "list":
+            qs = qs.prefetch_related(
+                "routine_exercises__exercise",
+                "routine_exercises__routine_sets",
+            )
+        return qs
 
     def get_serializer_class(self):
         if self.action == "list":

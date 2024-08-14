@@ -166,7 +166,7 @@ class RoutineSet(TimeStampedModel, UUIDModel):
         db_table = "routine_sets"
         verbose_name = _("Routine Set")
         verbose_name_plural = _("Routine Sets")
-        ordering = ["order"]
+        ordering = ["routine_exercise", "order"]
         unique_together = ("routine_exercise", "order")
 
     def __str__(self):

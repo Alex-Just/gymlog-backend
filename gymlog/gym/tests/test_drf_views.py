@@ -36,11 +36,11 @@ class TestWorkoutViewSet:
         assert response.status_code == STATUS_OK
 
         workout_data = response.json()
-        assert workout_data["routine_id"] == str(workout.routine.id)
-        assert len(workout_data["exercise_logs"]) == exercise_logs_count
+        assert workout_data["routineId"] == str(workout.routine.id)
+        assert len(workout_data["exerciseLogs"]) == exercise_logs_count
 
-        for exercise_log in workout_data["exercise_logs"]:
-            assert len(exercise_log["set_logs"]) == set_logs_count
+        for exercise_log in workout_data["exerciseLogs"]:
+            assert len(exercise_log["setLogs"]) == set_logs_count
 
     def test_update_workout_invalid_data(
         self,
@@ -519,11 +519,11 @@ class TestRoutineViewSet:
 
         routine_data = response.json()
         assert routine_data["name"] == routine.name
-        assert len(routine_data["routine_exercises"]) == 1
+        assert len(routine_data["routineExercises"]) == 1
 
-        for routine_exercise in routine_data["routine_exercises"]:
+        for routine_exercise in routine_data["routineExercises"]:
             routine_set_count = routine.routine_exercises.last().routine_sets.count()
-            assert len(routine_exercise["routine_sets"]) == routine_set_count
+            assert len(routine_exercise["routineSets"]) == routine_set_count
 
     def test_create_routine(self, user: User, api_client: APIClient):
         api_client.force_authenticate(user=user)
@@ -531,13 +531,13 @@ class TestRoutineViewSet:
 
         new_routine_data = {
             "name": "New Routine",
-            "routine_exercises": [
+            "routineExercises": [
                 {
                     "order": 1,
-                    "exercise_id": str(ExerciseFactory().id),
-                    "rest_timer": "00:01:00",
+                    "exerciseId": str(ExerciseFactory().id),
+                    "restTimer": "00:01:00",
                     "note": "Test Note",
-                    "routine_sets": [
+                    "routineSets": [
                         {
                             "order": 1,
                             "weight": 10.0,
@@ -559,18 +559,18 @@ class TestRoutineViewSet:
         got_routine_data = response.json()
         assert got_routine_data["name"] == new_routine_data["name"]
 
-        got_routine_exercises = got_routine_data["routine_exercises"]
+        got_routine_exercises = got_routine_data["routineExercises"]
         assert len(got_routine_exercises) == 1
-        assert len(got_routine_exercises[0]["routine_sets"]) == len(
-            new_routine_data["routine_exercises"][0]["routine_sets"],
+        assert len(got_routine_exercises[0]["routineSets"]) == len(
+            new_routine_data["routineExercises"][0]["routineSets"],
         )
         assert (
-            got_routine_exercises[0]["routine_sets"][0]["order"]
-            == new_routine_data["routine_exercises"][0]["routine_sets"][0]["order"]
+            got_routine_exercises[0]["routineSets"][0]["order"]
+            == new_routine_data["routineExercises"][0]["routineSets"][0]["order"]
         )
         assert (
-            got_routine_exercises[0]["routine_sets"][1]["order"]
-            == new_routine_data["routine_exercises"][0]["routine_sets"][1]["order"]
+            got_routine_exercises[0]["routineSets"][1]["order"]
+            == new_routine_data["routineExercises"][0]["routineSets"][1]["order"]
         )
 
     def test_update_routine(self, user: User, api_client: APIClient, routine: Routine):
@@ -631,8 +631,8 @@ class TestExerciseViewSet:
         assert len(exercise_list) > 0
         for exercise_data in exercise_list:
             assert "name" in exercise_data
-            assert "primary_muscle_group" in exercise_data
-            assert "exercise_type" not in exercise_data
+            assert "primaryMuscleGroup" in exercise_data
+            assert "exerciseType" not in exercise_data
             assert "equipment" not in exercise_data
 
     def test_get_exercise_detail(
@@ -649,11 +649,11 @@ class TestExerciseViewSet:
 
         exercise_data = response.json()
         assert exercise_data["name"] == exercise.name
-        assert exercise_data["exercise_type"] == exercise.exercise_type
+        assert exercise_data["exerciseType"] == exercise.exercise_type
         assert exercise_data["equipment"] == exercise.equipment
-        assert exercise_data["primary_muscle_group"] == exercise.primary_muscle_group
-        assert exercise_data["small_image"] is not None
-        assert exercise_data["large_image"] is not None
+        assert exercise_data["primaryMuscleGroup"] == exercise.primary_muscle_group
+        assert exercise_data["smallImage"] is not None
+        assert exercise_data["largeImage"] is not None
 
     def test_create_exercise(self, user: User, api_client: APIClient):
         api_client.force_authenticate(user=user)
@@ -675,15 +675,15 @@ class TestExerciseViewSet:
         )
         payload = {
             "name": "New Exercise",
-            "exercise_type": Exercise.ExerciseTypes.WEIGHT_REPS.value,
+            "exerciseType": Exercise.ExerciseTypes.WEIGHT_REPS.value,
             "equipment": Exercise.Equipments.BARBELL.value,
-            "primary_muscle_group": Exercise.MuscleGroups.BICEPS.value,
-            "other_muscles": [
+            "primaryMuscleGroup": Exercise.MuscleGroups.BICEPS.value,
+            "otherMuscles": [
                 Exercise.MuscleGroups.FOREARMS.value,
                 Exercise.MuscleGroups.SHOULDERS.value,
             ],
-            "small_image": small_image,
-            "large_image": large_image,
+            "smallImage": small_image,
+            "largeImage": large_image,
         }
 
         response = api_client.post(url, payload, format="multipart")
@@ -691,12 +691,12 @@ class TestExerciseViewSet:
 
         got_exercise = response.json()
         assert got_exercise["name"] == payload["name"]
-        assert got_exercise["exercise_type"] == payload["exercise_type"]
+        assert got_exercise["exerciseType"] == payload["exerciseType"]
         assert got_exercise["equipment"] == payload["equipment"]
-        assert got_exercise["primary_muscle_group"] == payload["primary_muscle_group"]
-        assert set(got_exercise["other_muscles"]) == set(payload["other_muscles"])
-        assert got_exercise["small_image"] is not None
-        assert got_exercise["large_image"] is not None
+        assert got_exercise["primaryMuscleGroup"] == payload["primaryMuscleGroup"]
+        assert set(got_exercise["otherMuscles"]) == set(payload["otherMuscles"])
+        assert got_exercise["smallImage"] is not None
+        assert got_exercise["largeImage"] is not None
 
     def test_update_exercise(
         self,
@@ -709,10 +709,10 @@ class TestExerciseViewSet:
 
         payload = {
             "name": "Updated Exercise",
-            "exercise_type": exercise.exercise_type,
+            "exerciseType": exercise.exercise_type,
             "equipment": exercise.equipment,
-            "primary_muscle_group": exercise.primary_muscle_group,
-            "other_muscles": exercise.other_muscles.split(","),
+            "primaryMuscleGroup": exercise.primary_muscle_group,
+            "otherMuscles": exercise.other_muscles.split(","),
         }
 
         response = api_client.put(url, payload, format="json")

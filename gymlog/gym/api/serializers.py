@@ -34,8 +34,6 @@ class ExerciseDetailSerializer(serializers.ModelSerializer):
             "other_muscles",
             "small_image",
             "large_image",
-            "created",
-            "modified",
         ]
 
 
@@ -61,25 +59,19 @@ class WorkoutSerializer(serializers.ModelSerializer):
     """ E.g.
     {
         "id": "0190e5af-3cc2-7293-b925-eaaa928569d5",
-        "created": "2024-07-24T16:59:45.218940Z",
-        "modified": "2024-07-24T16:59:45.326588Z",
         "start": null,
         "end": null,
         "duration": "01:30:00",
         "volume": 300.0,
-        "routine_id": "0190e5af-3cc2-7293-b925-ea9fa315c6db",
-        "exercise_logs": [
+        "routineId": "0190e5af-3cc2-7293-b925-ea9fa315c6db",
+        "exerciseLogs": [
             {
                 "id": "0190e5af-3d30-7b53-b0d9-071e08831a2d",
-                "created": "2024-07-24T16:59:45.328165Z",
-                "modified": "2024-07-24T16:59:45.328165Z",
                 "order": 1,
-                "exercise_id": "0190e5af-3cc4-7360-bbfb-964e3f47814a",
-                "set_logs": [
+                "exerciseId": "0190e5af-3cc4-7360-bbfb-964e3f47814a",
+                "setLogs": [
                     {
                         "id": "0190e5af-3d30-7b53-b0d9-0720641c848c",
-                        "created": "2024-07-24T16:59:45.328408Z",
-                        "modified": "2024-07-24T16:59:45.328408Z",
                         "order": 1,
                         "weight": 60.0,
                         "reps": 12,
@@ -92,12 +84,10 @@ class WorkoutSerializer(serializers.ModelSerializer):
                 "created": "2024-07-24T16:59:45.328608Z",
                 "modified": "2024-07-24T16:59:45.328608Z",
                 "order": 2,
-                "exercise_id": "0190e5af-3ccf-7aa2-b667-157f97c5cde7",
-                "set_logs": [
+                "exerciseId": "0190e5af-3ccf-7aa2-b667-157f97c5cde7",
+                "setLogs": [
                     {
                         "id": "0190e5af-3d30-7b53-b0d9-074688c9a354",
-                        "created": "2024-07-24T16:59:45.328787Z",
-                        "modified": "2024-07-24T16:59:45.328787Z",
                         "order": 1,
                         "weight": 70.0,
                         "reps": 15,
@@ -150,32 +140,38 @@ class WorkoutSerializer(serializers.ModelSerializer):
 class RoutineSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = RoutineSet
-        fields = ["id", "created", "modified", "order", "weight", "reps"]
+        fields = ["id", "order", "weight", "reps"]
 
 
 class RoutineExerciseSerializer(serializers.ModelSerializer):
     routine_sets = RoutineSetSerializer(many=True)
+    exercise = ExerciseDetailSerializer(read_only=True)
     exercise_id = serializers.UUIDField()
 
     class Meta:
         model = RoutineExercise
         fields = [
             "id",
-            "created",
-            "modified",
             "order",
+            "exercise",
             "exercise_id",
             "rest_timer",
             "note",
             "routine_sets",
-            "exercise_id",
         ]
 
 
 class RoutineListSerializer(serializers.ModelSerializer):
+    exercises_txt = serializers.SerializerMethodField()
+
     class Meta:
         model = Routine
-        fields = ["id", "name"]
+        fields = ["id", "name", "exercises_txt"]
+
+    @staticmethod
+    def get_exercises_txt(obj):
+        exercises = obj.routine_exercises.select_related("exercise").order_by("order")
+        return ", ".join(exercise.exercise.name for exercise in exercises)
 
 
 class RoutineDetailSerializer(serializers.ModelSerializer):
@@ -184,23 +180,17 @@ class RoutineDetailSerializer(serializers.ModelSerializer):
     """E.g.
         {
             "id": "0190e5f0-d9ed-78d2-940f-7945548a552b",
-            "created": "2024-07-24T18:11:25.293236Z",
-            "modified": "2024-07-24T18:11:25.293236Z",
             "name": "TestRoutine1",
-            "routine_exercises": [
+            "routineExercises": [
                 {
                     "id": "0190e5f0-d9f5-72f1-9854-58f9d5479669",
-                    "created": "2024-07-24T18:11:25.301404Z",
-                    "modified": "2024-07-24T18:11:25.301404Z",
                     "order": 1,
-                    "exercise_id": "0190e5f0-d9ee-7ef2-a715-0d1d87cbe3ac",
+                    "exerciseId": "0190e5f0-d9ee-7ef2-a715-0d1d87cbe3ac",
                     "rest_timer": "00:01:00",
                     "note": "",
-                    "routine_sets": [
+                    "routineSets": [
                         {
                             "id": "0190e5f0-d9f6-7393-8cd7-89c5603221c7",
-                            "created": "2024-07-24T18:11:25.302524Z",
-                            "modified": "2024-07-24T18:11:25.302524Z",
                             "order": 1,
                             "weight": 87.5,
                             "reps": 9
@@ -213,7 +203,7 @@ class RoutineDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Routine
-        fields = ["id", "created", "modified", "name", "routine_exercises"]
+        fields = ["id", "name", "routine_exercises"]
 
     @transaction.atomic
     def create(self, validated_data):

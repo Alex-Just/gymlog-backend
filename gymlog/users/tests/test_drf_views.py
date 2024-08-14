@@ -32,4 +32,8 @@ class TestUserViewSet:
             "username": user.username,
             "url": f"http://testserver/api/users/{user.username}/",
             "name": user.name,
+            "bio": "",
+            "language": "",
+            "profile_picture": None,
+            "private_profile": True,
         }
