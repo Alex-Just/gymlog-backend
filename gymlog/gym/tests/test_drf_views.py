@@ -579,13 +579,13 @@ class TestRoutineViewSet:
 
         updated_routine_data = {
             "name": "Updated Routine",
-            "routine_exercises": [
+            "routineExercises": [
                 {
                     "order": 1,
-                    "exercise_id": str(routine.routine_exercises.first().exercise.id),
-                    "rest_timer": "00:02:00",
+                    "exerciseId": str(routine.routine_exercises.first().exercise.id),
+                    "restTimer": "00:02:00",
                     "note": "Updated Note",
-                    "routine_sets": [
+                    "routineSets": [
                         {
                             "order": 1,
                             "weight": 60.0,
