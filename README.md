@@ -9,6 +9,17 @@ The backend is built with a focus on scalability and performance, using modern t
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
+<div align="center">
+
+<picture>
+    <img alt="Logo" src="https://github.com/user-attachments/assets/637388c4-bd2c-4b00-9192-0e892a6a6d58" />
+</picture>
+<picture>
+    <img alt="Logo" src="https://github.com/user-attachments/assets/927a29c3-b3e1-4914-a266-d43aabfab139" />
+</picture>
+
+</div>
+
 ## Table of Contents
 
 - [Features](#features)
